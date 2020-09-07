@@ -1,5 +1,7 @@
 import App from 'next/app'
 import { ThemeProvider } from 'styled-components'
+import { useWallet, UseWalletProvider } from 'use-wallet'
+import Page from '../components/page'
 
 const theme = {
   colors: {
@@ -48,6 +50,17 @@ export default class MyApp extends App {
     return (
       <ThemeProvider theme={theme}>
         <Component {...pageProps} />
+        <UseWalletProvider
+          chainId={1}
+          connectors={{
+            walletconnect: { rpcUrl: 'https://bridge.walletconnect.org' },
+          }}
+        >
+          <Page>
+            <Component {...pageProps} />
+          </Page>
+          <Global />
+        </UseWalletProvider>
       </ThemeProvider>
     )
   }
