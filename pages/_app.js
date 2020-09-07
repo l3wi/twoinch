@@ -1,11 +1,14 @@
 import App from 'next/app'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { useWallet, UseWalletProvider } from 'use-wallet'
 import Page from '../components/page'
 
 const theme = {
   colors: {
-    primary: '#0070f3',
+    primary: '#363C41',
+    secondary: '#4A4A4A',
+    disabled: '#9B9B9B',
+    highlight: '#2F4960',
   },
 }
 const Global = createGlobalStyle`
@@ -49,7 +52,6 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props
     return (
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
         <UseWalletProvider
           chainId={1}
           connectors={{
